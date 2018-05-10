@@ -28,11 +28,10 @@ module.exports = function bodyParser(req) {
     });
 
     // req.on('error', err => reject(err));
-    req.on('error', error => {
+    req.on('error', (error) => {
       logger.log(logger.ERROR, `BODY PARSER: Error occurred on parsing request body ${error}`);
       return reject(error);
-    })
+    });
     return undefined;
   });
- return undefined;
 };

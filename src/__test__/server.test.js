@@ -23,10 +23,8 @@ describe('VALID request to the API', () => {
           expect(res.body.content).toEqual(mockResource.content);
           expect(res.status).toEqual(201);
         });
-
     });
   });
-
 });
 
 describe('GET /api/v1/llama', () => {

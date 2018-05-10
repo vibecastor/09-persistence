@@ -11,4 +11,4 @@ module.exports = class {
     this.id = uuid();
     logger.log(logger.INFO, `Created a new llama: ${JSON.stringify(this)}`);
   }
-}
+};

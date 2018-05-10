@@ -1,12 +1,14 @@
 'use strict';
 
 const logger = require('./logger');
+
 const storage = module.exports = {};
 const Promise = require('bluebird');
-const fs = Promise.promisifyAll(require('fs'));
+const fs = Promise.promisifyAll(require('fs'), { suffix: 'Prom' });
 
-// schema is the type of resource, in this case llama, and it will just be a 'string' saying this is a llama schema
+// schema is type of resource, in this case llama,it's just a 'string' saying this is a llama schema
 // item is an actual object that we pass in to post a newly created llama 
+// schema means literally the word llama
 storage.create = function create(schema, item) { // item is req.body...
   logger.log(logger.INFO, 'STORAGE: Created a new resource');
   return new Promise((resolve, reject) => {
@@ -14,11 +16,11 @@ storage.create = function create(schema, item) { // item is req.body...
     if (!item) return Promise.reject(new Error('Cannot create a new item, item, required please!'));
     
     const json = JSON.writeFileProm(`$__dirname}/../data/${schema}/${item.id}.json`, json)
-    .then(() => {
-      logger.log(logger.INFO, 'STORAGE: Created a new Resource');
-      return item;
-    })
-    .catch(err => Promise.reject(err));
+      .then(() => {
+        logger.log(logger.INFO, 'STORAGE: Created a new Resource');
+        return item;
+      })
+      .catch(err => Promise.reject(err));
     
 
     if (!memory[schema]) memory[schema] = {};
@@ -42,8 +44,8 @@ storage.fetchOne = function fetchOne(schema, id) {
           return Promise.reject(err);
         }
       })
-      .catch((err) {
-        logger,log(logger.ERROR, JSON.stringify(err));
+      .catch((err) => { // caught this syntax error 
+        logger, log(logger.ERROR, JSON.stringify(err));
       });
 
     // if (!memory[schema]) return(new Error('schema not found'));
@@ -58,6 +60,13 @@ storage.fetchOne = function fetchOne(schema, id) {
 };
 
 storage.fetchAll = function fetchAll(schema) {
+  // return fs.readdirProm('needs some argument in here read the docs...')
+  // .then(somtehing => {
+  //   // do logic on somethi"
+  // }).catch(9err) => {
+  //   // logic with error
+  // }
+
   return new Promise((resolve, reject) => {
     if (!schema) return reject(new Error('no schema'));
     if (!memory[schema]) return reject(new Error('memory schema not found'));
@@ -77,7 +86,7 @@ storage.delete = function remove(schema, id) {
   return new Promise((resolve, reject) => {
     if (!schema) return reject(new Error('expected id'));
     if (!id) return reject(new Error('expected id'));
-    if (!memory[schema]) return(new Error('schema not found'));
+    if (!memory[schema]) return (new Error('schema not found'));
     const item = memory[schema][id];
     if (!item) {
       return reject(new error('item not found'));

@@ -4,7 +4,7 @@
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) Lab 09: Vanilla REST API w/ Persistence ======",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --watchAll",
+    "test": "eslint . && jest --coverage --forceExit --runInBand",
     "start": "nodemon index.js"
   },
   "repository": {
@@ -19,18 +19,22 @@
   },
   "homepage": "https://github.com/vibecastor/09-persistence#readme",
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "bluebird": "^3.5.1",
-    "body-parser": "^1.18.2",
     "eslint": "^4.19.1",
-    "logger": "0.0.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.1",
+    "jest": "^22.4.3",
+    "nodemon": "^1.17.3",
     "superagent": "^3.8.2",
-    "uuid": "^3.2.1",
     "winston": "^3.0.0-rc5"
   },
   "dependencies": {
     "dotenv": "^5.0.1",
-    "faker": "^4.1.0"
+    "faker": "^4.1.0",
+    "uuid": "^3.2.1"
   }
 }
