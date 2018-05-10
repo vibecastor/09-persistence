@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "eslint . && jest --coverage --forceExit --runInBand",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "nolint": "jest --coverage --forceExit --runInBand"
   },
   "repository": {
     "type": "git",

@@ -6,7 +6,7 @@ const superagent = require('superagent');
 
 const testPort = 5000;
 const mockResource = { title: 'test llama title', content: 'test llama content' };
-let mockId = 5;
+let mockId = null;
 
 beforeAll(() => server.start(testPort));
 afterAll(() => server.stop());
@@ -38,6 +38,7 @@ describe('GET /api/v1/llama', () => {
         expect(res.body.content).toEqual(mockResource.content);
         expect(res.status).toEqual(200);
       });
+    // if testing for errors test them in a .catch block!!!
   });
 });
 

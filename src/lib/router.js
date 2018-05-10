@@ -35,13 +35,9 @@ Router.prototype.delete = function remove(endpoint, callback) {
 // return a promise.all these need to be wrapped in promises...
 Router.prototype.route = function route() {
   return (req, res) => {
-    // bodyParser(req)
-    // .then(body => {
-    //   console.log(body, 'this time its going to work!')
-    // })
     Promise.all([
-      urlParser(req), // middleware
-      bodyParser(req), // middleware
+      urlParser(req),
+      bodyParser(req),
     ])
       .then(() => {
         if (typeof this.routes[req.method][req.url.pathname] === 'function') {
@@ -49,26 +45,14 @@ Router.prototype.route = function route() {
           return;
         }
         response.sendText(res, 404, 'Route Not Found FROM HERE');
-        // res.writeHead(404, { 'Content-Type': 'text/plain' });
-        // res.write('Route Not Found FROM HERE');
-        // res.end();
       })
       .catch((err) => {
         if (err instanceof SyntaxError) {
-          //   res.writeHead(404, { 'Content-Type': 'test/plain' });
-          //   res.write('Route Not Found');
-          //   res.end();
-          //   return undefined;
-          // }
-
           response.sendText(res, 404, 'Route Not Found');
           return undefined;
         }
         logger.log(logger.ERROR, JSON.stringify(err));
         response.sendText(res, 404, 'Route Not Found');
-        // res.writeHead(400, { 'Content-Type': 'text/plain' });
-        // res.write('Bad Request');
-        // res.end();
         return undefined;
       });
   };

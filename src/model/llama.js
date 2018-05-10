@@ -3,7 +3,7 @@
 const uuid = require('uuid/v4');
 const logger = require('../lib/logger');
 
-module.exports = class {
+module.exports = class Llama {
   constructor(title, content) {
     if (!title || !content) throw new Error('POST request requires title and content');
     this.title = title;
