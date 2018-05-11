@@ -1,4 +1,3 @@
-
 'use strict';
 
 const server = require('../lib/server');
@@ -27,6 +26,7 @@ describe('VALID request to the API', () => {
   });
 });
 
+// TODO:  You have to run the Post Test or have something in your data/llama dir in order for the GET to pass.
 describe('GET /api/v1/llama', () => {
   it('should respond with the a previously created llama', () => {
     // console.log(mockId, 'MOCK ID IN GET BLOCK')
