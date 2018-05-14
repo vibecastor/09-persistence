@@ -13,8 +13,8 @@ module.exports = function routeLlama(router) {
       const newLlama = new Llama(req.body.title, req.body.content);
       storage.create('Llama', newLlama) // LLama is passed over from 'item' in storage.create
         .then((llama) => {
-           response.sendJSON(res, 201, llama); 
-           return undefined;
+          response.sendJSON(res, 201, llama); 
+          return undefined;
         });
     } catch (err) {
       logger.log(logger.ERROR, `ROUTE-LLAMA: There was a bad request ${err}`);
@@ -28,28 +28,28 @@ module.exports = function routeLlama(router) {
     if (!req.url.query.id) {
       response.sendText(res, 404, 'Your request requires an id');
       return undefined;
-      }
+    }
       
-      storage.fetchOne('Llama', req.url.query.id)
-        .then((item) => {
+    storage.fetchOne('Llama', req.url.query.id)
+      .then((item) => {
         response.sendJSON(res, 200, item);
-          return undefined;
-        })
-        .catch((err) => {
-          logger.log(logger.ERROR, err, JSON.stringify(err));
-          response.sendText(res, 404, 'Resource not found');
-          return undefined;
-        });
-      return undefined;
-    });
-  };
-
-  router.delete('/api/v1/llama', (req, res) => {
-  storage.delete('Llama', req.url.query.id)
-  .then(() => {
-    response.deleteJSON(res, 204, item);
+        return undefined;
+      })
+      .catch((err) => {
+        logger.log(logger.ERROR, err, JSON.stringify(err));
+        response.sendText(res, 404, 'Resource not found');
+        return undefined;
+      });
     return undefined;
   });
-  return undefined;
-  });
 };
+
+//   router.delete('/api/v1/llama', (req, res) => {
+//   storage.delete('Llama', req.url.query.id)
+//   .then(() => {
+//     response.deleteJSON(res, 204, item);
+//     return undefined;
+//   });
+//   return undefined;
+//   });
+// }

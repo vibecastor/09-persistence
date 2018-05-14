@@ -1,4 +1,3 @@
-
 'use strict';
 
 const server = require('../lib/server');
@@ -6,7 +5,7 @@ const superagent = require('superagent');
 
 const testPort = 5000;
 const mockResource = { title: 'test llama title', content: 'test llama content' };
-let mockId = 5;
+let mockId = null;
 
 beforeAll(() => server.start(testPort));
 afterAll(() => server.stop());
@@ -23,12 +22,11 @@ describe('VALID request to the API', () => {
           expect(res.body.content).toEqual(mockResource.content);
           expect(res.status).toEqual(201);
         });
-
-    });
+    });git
   });
-
 });
 
+// TODO:  Run the Post Test or have something in your data/llama dir in order for the GET to pass.
 describe('GET /api/v1/llama', () => {
   it('should respond with the a previously created llama', () => {
     // console.log(mockId, 'MOCK ID IN GET BLOCK')
@@ -40,6 +38,7 @@ describe('GET /api/v1/llama', () => {
         expect(res.body.content).toEqual(mockResource.content);
         expect(res.status).toEqual(200);
       });
+    // if testing for errors test them in a .catch block!!!
   });
 });
 
