@@ -22,11 +22,11 @@ describe('VALID request to the API', () => {
           expect(res.body.content).toEqual(mockResource.content);
           expect(res.status).toEqual(201);
         });
-    });
+    });git
   });
 });
 
-// TODO:  You have to run the Post Test or have something in your data/llama dir in order for the GET to pass.
+// TODO:  Run the Post Test or have something in your data/llama dir in order for the GET to pass.
 describe('GET /api/v1/llama', () => {
   it('should respond with the a previously created llama', () => {
     // console.log(mockId, 'MOCK ID IN GET BLOCK')

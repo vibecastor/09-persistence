@@ -15,7 +15,6 @@ module.exports = function bodyParser(req) {
       message += data.toString();
     });
 
-    // listening for request to finish and then parse the JSON into a javascript object!
     req.on('end', () => {
       try {
         // console.log(req); //before 
@@ -27,7 +26,6 @@ module.exports = function bodyParser(req) {
       }
     });
 
-    // req.on('error', err => reject(err));
     req.on('error', (error) => {
       logger.log(logger.ERROR, `BODY PARSER: Error occurred on parsing request body ${error}`);
       return reject(error);
